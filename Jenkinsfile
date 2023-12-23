@@ -5,10 +5,10 @@ pipeline {
         NEXUS_IP = "10.0.1.6"	
         K8S_MASTER_IP ="10.0.1.3"        
         nexus_cred = "nexus"
-		NEXUS_IMAGE_URL = "${NEXUS_IP}:8082"
+	NEXUS_IMAGE_URL = "${NEXUS_IP}:8082"
         IMAGE_NAME = "docker-images" 
         DOCKERHUB_NAME = "prabhatrkumaroy"
-		GITHUB_URL = "https://github.com/prabhat-roy/java-kubernetes.git"
+	GITHUB_URL = "https://github.com/prabhat-roy/java-kubernetes.git"
     }
     tools {
         jdk 'Java'
