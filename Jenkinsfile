@@ -5,10 +5,14 @@ pipeline {
         NEXUS_IP = "10.0.1.6"	
         K8S_MASTER_IP ="10.0.1.3"        
         nexus_cred = "nexus"
-		NEXUS_IMAGE_URL = "${NEXUS_IP}:8082"
+	NEXUS_IMAGE_URL = "${NEXUS_IP}:8082"
         IMAGE_NAME = "docker-images" 
         DOCKERHUB_NAME = "prabhatrkumaroy"
+<<<<<<< HEAD
 		GITHUB_URL = "https://github.com/prabhat-roy/java-tomcat.git"
+=======
+	GITHUB_URL = "https://github.com/prabhat-roy/java-kubernetes.git"
+>>>>>>> 0237cd882d748395d60a5aef3e85bfaf5f0f48fd
     }
     tools {
         jdk 'Java'
