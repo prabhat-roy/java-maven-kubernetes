@@ -86,18 +86,16 @@ def dockerrun() {
 
 def dockerhub() {
         withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-               sh '''
-                        docker image tag ${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER} ${DOCKERHUB_NAME}/${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER}
-			docker image tag ${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER} ${DOCKERHUB_NAME}/${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER}
-			docker image tag ${STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER} ${DOCKERHUB_NAME}/${STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER}
-			docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}
-                        docker push ${DOCKERHUB_NAME}/${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER}
-			docker push ${DOCKERHUB_NAME}/${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER}
-			docker push ${DOCKERHUB_NAME}/${STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER}
-			docker rmi ${DOCKERHUB_NAME}/${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER}
-			docker rmi ${DOCKERHUB_NAME}/${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER}
-			docker rmi ${DOCKERHUB_NAME}/${STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER}
-               '''
+              sh "docker image tag ${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER} ${DOCKERHUB_NAME}/${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER}"
+              sh "docker image tag ${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER} ${DOCKERHUB_NAME}/${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER}"
+              sh "docker image tag ${STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER} ${DOCKERHUB_NAME}/${STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER}"
+              sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+              sh "docker push ${DOCKERHUB_NAME}/${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER}"
+              sh "docker push ${DOCKERHUB_NAME}/${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER}"
+              sh "docker push ${DOCKERHUB_NAME}/${STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER}"
+              sh "docker rmi ${DOCKERHUB_NAME}/${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER}"
+              sh "docker rmi ${DOCKERHUB_NAME}/${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER}"
+              sh "docker rmi ${DOCKERHUB_NAME}/${STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER}"
     }
 }
 
