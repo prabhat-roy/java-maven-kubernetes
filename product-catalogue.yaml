@@ -33,7 +33,7 @@ spec:
        - name: regcred
       containers:
       - name: productcatalogue
-        image: 10.0.1.7:8082/productcatalogue:30
+        image: 10.0.1.7:8082/product-catalogue:31
         ports:
         - containerPort: 8020
         livenessProbe:

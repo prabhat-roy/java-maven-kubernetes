@@ -8,7 +8,7 @@ pipeline {
 	    NEXUS_IMAGE_URL = "${NEXUS_IP}:8082"
         PRODUCT_IMAGE_NAME = "product-catalogue"
         SHOPFRONT_IMAGE_NAME = "shopfront"
-        STOCKMANAGER_IMAGE_NAME = "stockmanager"
+        STOCKMANAGER_IMAGE_NAME = "stock-manager"
         DOCKERHUB_NAME = "prabhatrkumaroy"
 		GITHUB_URL = "https://github.com/prabhat-roy/java-maven-kubernetes.git"
     }
