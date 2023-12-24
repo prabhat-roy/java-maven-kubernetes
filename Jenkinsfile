@@ -102,6 +102,13 @@ pipeline {
                 }
             }
         }
+        stage("Docker Image Push To Docker Hub") {
+            steps {
+                script {
+                    gv_script.dockerhub()
+                }
+            }
+        }
     }
     post {
         always {
