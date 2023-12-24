@@ -74,7 +74,13 @@ pipeline {
                 }
             }
         }
-
+        stage("Trivy Image Scan") {
+            steps {
+                script {
+                    gv_script.trivyimage()
+                }
+            }
+        }
     }
     post {
         always {

@@ -52,8 +52,7 @@ def dockerbuild() {
 def trivyimage() {
         sh '''
                 trivy image ${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER}
-                trivy image ${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER}
-                trivy image ${ STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER}
+                
         '''
         
 }
