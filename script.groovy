@@ -129,6 +129,13 @@ def dockerscout() {
         }
 }
 
+def manifast() {
+        sh '''
+                sed -i 's+${NEXUS_IMAGE_URL}/${STOCKMANAGER_IMAGE_NAME}.*+${NEXUS_IMAGE_URL}/${STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER}+g' stock-manager.yaml
+                sed -i 's+${NEXUS_IMAGE_URL}/${PRODUCT_IMAGE_NAME}.*+${NEXUS_IMAGE_URL}/${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER}+g' product-catalogue.yaml
+                sed -i 's+${NEXUS_IMAGE_URL}/${SHOPFRONT_IMAGE_NAME}.*+${NEXUS_IMAGE_URL}/${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER}+g' shopfront.yaml
+        '''
+}
 def kubernetes() {
                  sshagent(['k8s']) {
                         sh "scp -o StrictHostKeyChecking=no product-catalogue.yaml shopfront.yaml stock-manager.yaml root@'${K8S_MASTER_IP}':/root"
