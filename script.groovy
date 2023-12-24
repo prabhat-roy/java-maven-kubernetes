@@ -140,7 +140,7 @@ def kubernetes() {
                  sshagent(['k8s']) {
                         sh "scp -o StrictHostKeyChecking=no product-catalogue.yaml shopfront.yaml stock-manager.yaml root@'${K8S_MASTER_IP}':/root"
                         sh "ssh root@'${K8S_MASTER_IP}' kubectl apply -f ."
-                        sh "ssh root@'${K8S_MASTER_IP}' rm -rf *.yml"
+
         }
 }
 
