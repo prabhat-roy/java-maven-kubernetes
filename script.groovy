@@ -34,11 +34,18 @@ def buildapplication() {
 }
 
 def dockerbuild() {
-        sh "docker build . -t ${IMAGE_NAME}:${BUILD_NUMBER}"
+        sh "docker build . -t ${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER} -f ./productcatalogue"
+        sh "docker build . -t ${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER} -f ./shopfront"
+        sh "docker build . -t ${ STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER} -f ./stockmanager"
 }
 
 def trivyimage() {
-        sh "trivy image ${IMAGE_NAME}:${BUILD_NUMBER}"
+        sh '''
+                trivy image ${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER}
+                trivy image ${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER}
+                trivy image ${ STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER}
+        '''
+        
 }
 
 def grype() {

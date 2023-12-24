@@ -2,13 +2,15 @@ def gv_script
 pipeline {
     agent { label 'Jenkins-Agent' }
     environment {
-        NEXUS_IP = "10.0.1.6"	
-        K8S_MASTER_IP ="10.0.1.3"        
+        NEXUS_IP = "10.0.1.7"	
+        K8S_MASTER_IP ="10.0.1.2"        
         nexus_cred = "nexus"
-	NEXUS_IMAGE_URL = "${NEXUS_IP}:8082"
-        IMAGE_NAME = "docker-images" 
+	    NEXUS_IMAGE_URL = "${NEXUS_IP}:8082"
+        PRODUCT_IMAGE_NAME = "product-catalogue"
+        SHOPFRONT_IMAGE_NAME = "shopfront"
+        STOCKMANAGER_IMAGE_NAME = "stockmanager"
         DOCKERHUB_NAME = "prabhatrkumaroy"
-		GITHUB_URL = "https://github.com/prabhat-roy/java-tomcat.git"
+		GITHUB_URL = "https://github.com/prabhat-roy/java-maven-kubernetes.git"
     }
     tools {
         jdk 'Java'
@@ -85,48 +87,7 @@ pipeline {
                 }
             }
         }
-        stage("Docker Scout Image Scan") {
-            steps {
-                script {
-                    gv_script.dockerscout()
-                }
-            }
-        }
-        stage("Grype Image Scan") {
-            steps {
-                script {
-                    gv_script.grype()
-                }
-            }
-        }
-        stage("Syft Image Scan") {
-            steps {
-                script {
-                    gv_script.syft()
-                }
-            }
-        }
-        stage("Docker Push Docker Hub") {
-            steps {
-                script {
-                    gv_script.dockerhub()
-                }
-            }
-        }
-        stage("Docker Push Nexus") {
-            steps {
-                script {
-                    gv_script.dockernexus()
-                }
-            }
-        }
-       stage("Deployment to K8s") {
-            steps {
-                script {
-                    gv_script.kubernetes()
-                }
-            }
-        }
+        
         stage("Container Removal") {
             steps {
                 script {
@@ -142,4 +103,3 @@ pipeline {
         }
     }
 }
-
