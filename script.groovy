@@ -42,9 +42,12 @@ def buildapplication() {
 }
 
 def dockerbuild() {
-        sh "docker build . -t ${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER} -f productcatalogue/Dockerfile"
-        sh "docker build . -t ${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER} -f shopfront/Dockerfile"
-        sh "docker build . -t ${ STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER} -f stockmanager/Dockerfile"
+        sh '''
+                docker build . -t ${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER} -f productcatalogue/Dockerfile
+                docker build . -t ${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER} -f shopfront/Dockerfile
+                docker build . -t ${ STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER} -f stockmanager/Dockerfile
+        '''
+ 
 }
 
 def trivyimage() {

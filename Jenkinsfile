@@ -67,6 +67,13 @@ pipeline {
                 }
             }
         }
+        stage("Docker Build") {
+            steps {
+                script {
+                    gv_script.dockerbuild()
+                }
+            }
+        }
 
     }
     post {
