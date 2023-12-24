@@ -77,8 +77,12 @@ def syft() {
 
 def dockerrun() {
     sh '''
-        docker run -dt ${IMAGE_NAME}:${BUILD_NUMBER}"
-        docker stop ${IMAGE_NAME}:${BUILD_NUMBER}"
+        docker run -dt ${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER}
+        docker run -dt ${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER}
+        docker run -dt ${STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER}
+        docker stop ${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER}
+        docker stop ${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER}
+        docker stop ${STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER}
         '''
 }
 

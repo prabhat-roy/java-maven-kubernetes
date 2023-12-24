@@ -95,6 +95,13 @@ pipeline {
                 }
             }
         }
+        stage("Docker Run Test") {
+            steps {
+                script {
+                    gv_script.dockerrun()
+                }
+            }
+        }
     }
     post {
         always {
