@@ -101,11 +101,16 @@ def dockerhub() {
 
 def dockernexus() {
         withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'nexusPassword', usernameVariable: 'nexusUser')]) {
-                sh "docker image tag ${IMAGE_NAME}:${BUILD_NUMBER} ${NEXUS_IMAGE_URL}/${IMAGE_NAME}:${BUILD_NUMBER}"
-	        sh "docker login -u ${env.nexusUser} -p ${env.nexusPassword} ${NEXUS_IMAGE_URL}"
-                sh "docker push ${NEXUS_IMAGE_URL}/${IMAGE_NAME}:${BUILD_NUMBER}"
-                sh "docker pull ${NEXUS_IMAGE_URL}/${IMAGE_NAME}:${BUILD_NUMBER}"
-                sh "docker rmi -f ${NEXUS_IMAGE_URL}/${IMAGE_NAME}:${BUILD_NUMBER}"
+                sh "docker image tag ${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER} ${NEXUS_IMAGE_URL}/${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER}"
+                sh "docker image tag ${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER} ${NEXUS_IMAGE_URL}}/${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER}"
+                sh "docker image tag ${STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER} ${NEXUS_IMAGE_URL}/${STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER}"
+                sh "docker login -u ${env.nexusUser} -p ${env.nexusPassword}"
+                sh "docker push ${NEXUS_IMAGE_URL}/${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER}"
+                sh "docker push ${NEXUS_IMAGE_URL}/${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER}"
+                sh "docker push ${NEXUS_IMAGE_URL}/${STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER}"
+                sh "docker rmi ${NEXUS_IMAGE_URL}/${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER}"
+                sh "docker rmi ${NEXUS_IMAGE_URL}/${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER}"
+                sh "docker rmi ${NEXUS_IMAGE_URL}/${STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER}"
         }
 }
 

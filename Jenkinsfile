@@ -109,6 +109,13 @@ pipeline {
                 }
             }
         }
+        stage("Docker Image Push To Nexus") {
+            steps {
+                script {
+                    gv_script.dockernexus()
+                }
+            }
+        }
     }
     post {
         always {
