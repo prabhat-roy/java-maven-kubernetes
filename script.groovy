@@ -60,11 +60,19 @@ def trivyimage() {
 }
 
 def grype() {
-        sh "grype ${IMAGE_NAME}:${BUILD_NUMBER}"       
+        sh '''
+                grype ${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER}
+                grype ${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER}
+                grype ${STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER}
+        '''       
 }
 
 def syft() {
-        sh "syft ${IMAGE_NAME}:${BUILD_NUMBER}"       
+        sh '''
+                syft ${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER}
+                syft ${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER}
+                syft ${STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER}
+        ''' 
 }
 
 def dockerrun() {

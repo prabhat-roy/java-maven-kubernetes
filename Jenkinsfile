@@ -81,6 +81,20 @@ pipeline {
                 }
             }
         }
+        stage("Grype Image Scan") {
+            steps {
+                script {
+                    gv_script.grype()
+                }
+            }
+        }
+        stage("Syft Image Scan") {
+            steps {
+                script {
+                    gv_script.syft()
+                }
+            }
+        }
     }
     post {
         always {
