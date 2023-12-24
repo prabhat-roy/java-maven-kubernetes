@@ -133,8 +133,8 @@ def manifast() {
         sh '''
                 cat shopfront.yaml
                 cat product-catalogue.yaml
-                cat stockmanager.yaml
-                sed -i 's+${NEXUS_IMAGE_URL}/${STOCKMANAGER_IMAGE_NAME}.*+${NEXUS_IMAGE_URL}/${STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER}+g' stockmanager.yaml
+                cat stock-manager.yaml
+                sed -i 's+${NEXUS_IMAGE_URL}/${STOCKMANAGER_IMAGE_NAME}.*+${NEXUS_IMAGE_URL}/${STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER}+g' stock-manager.yaml
                 sed -i 's+${NEXUS_IMAGE_URL}/${PRODUCT_IMAGE_NAME}.*+${NEXUS_IMAGE_URL}/${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER}+g' product-catalogue.yaml
                 sed -i 's+${NEXUS_IMAGE_URL}/${SHOPFRONT_IMAGE_NAME}.*+${NEXUS_IMAGE_URL}/${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER}+g' shopfront.yaml
                 cat shopfront.yaml
