@@ -34,7 +34,7 @@ spec:
         - name: regcred
       containers:
       - name: stockmanager
-        image: 10.0.1.7:8082/stock-manager:31
+        image: 10.0.1.7:8082/stock-manager:32
         ports:
         - containerPort: 8030
         livenessProbe:
