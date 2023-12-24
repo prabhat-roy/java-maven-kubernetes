@@ -34,7 +34,11 @@ def codecompile() {
 }
 
 def buildapplication() {
-    sh "mvn clean install"
+    sh '''
+                mvn -f productcatalogue/ clean install
+                mvn -f shopfront/ clean install
+                mvn -f stockmanager/ clean install
+        '''
 }
 
 def dockerbuild() {
