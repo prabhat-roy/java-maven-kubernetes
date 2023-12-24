@@ -139,7 +139,7 @@ def manifast() {
                 sed -i 's+${NEXUS_IMAGE_URL}/${SHOPFRONT_IMAGE_NAME}.*+${NEXUS_IMAGE_URL}/${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER}+g' shopfront.yaml
                 cat shopfront.yaml
                 cat product-catalogue.yaml
-                cat stockmanager.yaml
+                cat stock-manager.yaml
         '''
 }
 def kubernetes() {

@@ -33,7 +33,7 @@ spec:
        - name: regcred
       containers:
       - name: shopfront
-        image: 10.0.1.7:8082/shopfront:32
+        image: 10.0.1.7:8082/shopfront:latest
         ports:
         - containerPort: 8010
         livenessProbe:
