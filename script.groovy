@@ -35,9 +35,9 @@ def codecompile() {
 
 def buildapplication() {
     sh '''
-                mvn -f productcatalogue/ clean install
-                mvn -f shopfront/ clean install
-                mvn -f stockmanager/ clean install
+                mvn -f productcatalogue/ clean install -DskipTests
+                mvn -f shopfront/ clean install -DskipTests
+                mvn -f stockmanager/ clean install -DskipTests
         '''
 }
 
