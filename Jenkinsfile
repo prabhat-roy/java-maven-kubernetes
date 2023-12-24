@@ -53,20 +53,7 @@ pipeline {
                 }
             }
         }
-        stage("Code Compile") {
-            steps {
-                script {
-                    gv_script.codecompile()
-                }
-            }
-        }
-        stage("Building Application") {
-            steps {
-                script {
-                    gv_script.buildapplication()
-                }
-            }
-        }
+        
         stage("Docker Build") {
             steps {
                 script {
