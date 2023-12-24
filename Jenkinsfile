@@ -95,6 +95,13 @@ pipeline {
                 }
             }
         }
+        stage("Docker Scout Image Scan") {
+            steps {
+                script {
+                    gv_script.dockerscout()
+                }
+            }
+        }
         stage("Docker Run Test") {
             steps {
                 script {

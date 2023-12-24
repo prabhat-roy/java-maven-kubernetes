@@ -104,7 +104,7 @@ def dockernexus() {
                 sh "docker image tag ${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER} ${NEXUS_IMAGE_URL}/${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER}"
                 sh "docker image tag ${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER} ${NEXUS_IMAGE_URL}/${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER}"
                 sh "docker image tag ${STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER} ${NEXUS_IMAGE_URL}/${STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER}"
-                sh "docker login -u ${env.nexusUser} -p ${env.nexusPassword}"
+                sh "docker login -u ${env.nexusUser} -p ${env.nexusPassword} ${NEXUS_IMAGE_URL}"
                 sh "docker push ${NEXUS_IMAGE_URL}/${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER}"
                 sh "docker push ${NEXUS_IMAGE_URL}/${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER}"
                 sh "docker push ${NEXUS_IMAGE_URL}/${STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER}"
@@ -116,10 +116,16 @@ def dockernexus() {
 
 def dockerscout() {
         withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-                sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-                sh "docker scout quickview ${IMAGE_NAME}:${BUILD_NUMBER}"
-                sh "docker scout cves ${IMAGE_NAME}:${BUILD_NUMBER}"
-                sh "docker scout recommendations ${IMAGE_NAME}:${BUILD_NUMBER}"
+                sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword} "
+                sh "docker scout quickview ${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER}"
+                sh "docker scout quickview ${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER}"
+                sh "docker scout quickview ${STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER}"
+                sh "docker scout cves ${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER}"
+                sh "docker scout cves ${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER}"
+                sh "docker scout cves ${STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER}"
+                sh "docker scout recommendations ${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER}"
+                sh "docker scout recommendations ${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER}"
+                sh "docker scout recommendations ${STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER}"
         }
 }
 
