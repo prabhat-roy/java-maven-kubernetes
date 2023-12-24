@@ -131,15 +131,13 @@ def dockerscout() {
 
 def kubernetes() {
                  sshagent(['k8s']) {
-                        sh "scp -o StrictHostKeyChecking=no service.yml nexus-deployment.yml dockerhub-deployment.yml root@'${K8S_MASTER_IP}':/root"
+                        sh "scp -o StrictHostKeyChecking=no product-catalogue.yaml shopfront.yaml stock-manager.yaml root@'${K8S_MASTER_IP}':/root"
                         sh "ssh root@'${K8S_MASTER_IP}' kubectl apply -f ."
                         sh "ssh root@'${K8S_MASTER_IP}' rm -rf *.yml"
         }
 }
 
 def removedocker() {
-                sh "docker rmi -f ${IMAGE_NAME}:${BUILD_NUMBER}"
-                sh "docker rmi -f owasp/zap2docker-stable"
                 sh "docker system prune --force --all"
                 sh "docker system prune --force --all --volumes"
 }

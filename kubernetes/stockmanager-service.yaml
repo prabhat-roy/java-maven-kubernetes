@@ -24,15 +24,17 @@ spec:
   selector:
     matchLabels:
       app: stockmanager
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
         app: stockmanager
     spec:
+      imagePullSecrets:
+        - name: regcred
       containers:
       - name: stockmanager
-        image: thetips4you/stockmanager:latest
+        image: 10.0.1.7:8082/stockmanager:30
         ports:
         - containerPort: 8030
         livenessProbe:

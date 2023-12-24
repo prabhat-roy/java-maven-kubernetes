@@ -123,6 +123,20 @@ pipeline {
                 }
             }
         }
+        stage("Deployment to K8s") {
+            steps {
+                script {
+                    gv_script.kubernetes()
+                }
+            }
+        }
+        stage("Container Removal") {
+            steps {
+                script {
+                    gv_script.removedocker()
+                }
+            }
+        }
     }
     post {
         always {
