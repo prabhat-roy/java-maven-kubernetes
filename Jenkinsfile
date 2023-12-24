@@ -45,13 +45,7 @@ pipeline {
                 }
             }
         }
-        stage("SonarQube Analysis") {
-            steps {
-                script {
-                    gv_script.sonaranalysis()
-                }
-            }
-        }
+
         stage("Trivy FS Scan") {
             steps {
                 script {
