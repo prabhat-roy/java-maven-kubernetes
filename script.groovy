@@ -26,7 +26,11 @@ def trivyfs() {
 }
 
 def codecompile() {
-        sh "mvn clean compile"
+        sh '''
+                mvn -f productcatalogue/ clean compile
+                mvn -f shopfront/ clean compile
+                mvn -f stockmanager/ clean compile
+        '''
 }
 
 def buildapplication() {
@@ -34,9 +38,9 @@ def buildapplication() {
 }
 
 def dockerbuild() {
-        sh "docker build . -t ${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER} -f ./productcatalogue"
-        sh "docker build . -t ${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER} -f ./shopfront"
-        sh "docker build . -t ${ STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER} -f ./stockmanager"
+        sh "docker build . -t ${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER} -f productcatalogue/Dockerfile"
+        sh "docker build . -t ${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER} -f shopfront/Dockerfile"
+        sh "docker build . -t ${ STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER} -f stockmanager/Dockerfile"
 }
 
 def trivyimage() {

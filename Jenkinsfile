@@ -53,26 +53,10 @@ pipeline {
                 }
             }
         }
-        
-        stage("Docker Build") {
+        stage("Code Compile") {
             steps {
                 script {
-                    gv_script.dockerbuild()
-                }
-            }
-        }
-        stage("Trivy Image Scan") {
-            steps {
-                script {
-                    gv_script.trivyimage()
-                }
-            }
-        }
-        
-        stage("Container Removal") {
-            steps {
-                script {
-                    gv_script.removedocker()
+                    gv_script.codecompile()
                 }
             }
         }
