@@ -80,7 +80,7 @@ def dockerrun() {
         docker run -dt ${PRODUCT_IMAGE_NAME}:${BUILD_NUMBER}
         docker run -dt ${SHOPFRONT_IMAGE_NAME}:${BUILD_NUMBER}
         docker run -dt ${STOCKMANAGER_IMAGE_NAME}:${BUILD_NUMBER}
-        docker ps -aq | xargs docker stop | xargs docker rm
+        docker ps -aq | xargs docker stop
         '''
 }
 
