@@ -34,7 +34,7 @@ spec:
         - name: project-a
       containers:
       - name: stock-manager
-        image: 10.0.1.9:8082/stock-manager:5
+        image: 10.0.1.9:8082/stock-manager:6
         ports:
         - containerPort: 8030
         livenessProbe:

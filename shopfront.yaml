@@ -33,7 +33,7 @@ spec:
        - name: project-a
       containers:
       - name: shopfront
-        image: 10.0.1.9:8082/shopfront:5
+        image: 10.0.1.9:8082/shopfront:6
         ports:
         - containerPort: 8010
         livenessProbe:

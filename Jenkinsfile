@@ -123,13 +123,6 @@ pipeline {
                 }
             }
         }
-        stage("K8s manifast Update") {
-            steps {
-                script {
-                    gv_script.manifast()
-                }
-            }
-        }
         stage("Deployment to K8s") {
             steps {
                 script {

@@ -33,7 +33,7 @@ spec:
        - name: project-a
       containers:
       - name: product-catalogue
-        image: 10.0.1.9:8082/product-catalogue:5
+        image: 10.0.1.9:8082/product-catalogue:6
         ports:
         - containerPort: 8020
         livenessProbe:
