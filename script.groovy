@@ -131,11 +131,9 @@ def dockerscout() {
 
 def manifast() {
         sh '''
-                cat shopfront.yaml
-                sed -i 's+10.0.1.9:8082/product-catalogue.*+10.0.1.9:8082/product-catalogue:8+g' product-catalogue.yaml
-                sed -i 's+10.0.1.9:8082/shopfront.*+10.0.1.9:8082/shopfront:8+g' shopfront.yaml
-                sed -i 's+10.0.1.9:8082/stock-manager.*+10.0.1.9:8082/stock-manager:8+g' stock-manager.yaml
-                cat shopfront.yaml
+                sed -i 's+10.0.1.9:8082/product-catalogue.*+10.0.1.9:8082/product-catalogue:9+g' product-catalogue.yaml
+                sed -i 's+10.0.1.9:8082/shopfront.*+10.0.1.9:8082/shopfront:9+g' shopfront.yaml
+                sed -i 's+10.0.1.9:8082/stock-manager.*+10.0.1.9:8082/stock-manager:9+g' stock-manager.yaml
         '''
 }
 
