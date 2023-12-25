@@ -11,22 +11,6 @@ def owasp() {
     dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
 }
 
-def sonarqube() {
-        withSonarQubeEnv('SonarQube') {
-                sh "$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=3-Tier -Dsonar.projectName=3-Tier -Dsonar.java.binaries=."
-        }
-}
-
-def sonaranalysis() {
-        withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'sonar') {
-            sh "mvn sonar:sonar"
-    }
-}
-
-def qualitygate() {
-        waitForQualityGate abortPipeline: false, credentialsId: 'sonar'
-}
-
 def trivyfs() {
         sh "trivy fs ."
 }
@@ -137,9 +121,9 @@ def dockerscout() {
 
 def manifast() {
         sh '''
-                sed -i 's+10.0.1.9:8082/product-catalogue.*+10.0.1.9:8082/product-catalogue:9+g' product-catalogue.yaml
-                sed -i 's+10.0.1.9:8082/shopfront.*+10.0.1.9:8082/shopfront:9+g' shopfront.yaml
-                sed -i 's+10.0.1.9:8082/stock-manager.*+10.0.1.9:8082/stock-manager:9+g' stock-manager.yaml
+                sed -i 's+10.0.1.9:8082/product-catalogue.*+10.0.1.9:8082/product-catalogue:11+g' product-catalogue.yaml
+                sed -i 's+10.0.1.9:8082/shopfront.*+10.0.1.9:8082/shopfront:11+g' shopfront.yaml
+                sed -i 's+10.0.1.9:8082/stock-manager.*+10.0.1.9:8082/stock-manager:11+g' stock-manager.yaml
         '''
 }
 

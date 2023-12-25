@@ -38,13 +38,6 @@ pipeline {
                 }
             }
         }
-        stage("SonarQube Scan") {
-            steps {
-                script {
-                    gv_script.sonarqube()
-                }
-            }
-        }
         stage("OWASP FS Scan") {
             steps {
                 script {
