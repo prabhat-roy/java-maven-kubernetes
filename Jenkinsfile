@@ -2,8 +2,8 @@ def gv_script
 pipeline {
     agent { label 'Jenkins-Agent' }
     environment {
-        NEXUS_IP = "10.0.1.7"	
-        K8S_MASTER_IP ="10.0.1.12"        
+        NEXUS_IP = "10.0.1.9"	
+        K8S_MASTER_IP ="10.0.1.6"        
         nexus_cred = "nexus"
 	    NEXUS_IMAGE_URL = "${NEXUS_IP}:8082"
         PRODUCT_IMAGE_NAME = "product-catalogue"
