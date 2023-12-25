@@ -11,6 +11,12 @@ def owasp() {
     dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
 }
 
+def sonarqube() {
+        withSonarQubeEnv('SonarQube') {
+                sh "$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=3-Tier -Dsonar.projectName=3-Tier -Dsonar.java.binaries=."
+        }
+}
+
 def sonaranalysis() {
         withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'sonar') {
             sh "mvn sonar:sonar"
