@@ -129,6 +129,14 @@ def dockerscout() {
         }
 }
 
+def manifast() {
+        sh '''
+                sed -i 's+10.0.1.9:8082/product-catalogue.*+10.0.1.9:8082/product-catalogue:7+g' product-catalogue.yaml
+                sed -i 's+10.0.1.9:8082/shopfront.*+10.0.1.9:8082/shopfront:7+g' shopfront.yaml
+                sed -i 's+10.0.1.9:8082/stock-manager.*+10.0.1.9:8082/stock-manager:7+g' stock-manager.yaml
+        '''
+}
+
 def kubernetes() {
                  sshagent(['k8s']) {
                         sh "scp -o StrictHostKeyChecking=no product-catalogue.yaml shopfront.yaml stock-manager.yaml root@'${K8S_MASTER_IP}':/root"
